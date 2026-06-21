@@ -29,7 +29,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 warnings.filterwarnings("ignore")
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-RAW_CSV  = os.path.join(DATA_DIR, "jan to may police violation_anonymized791b166.csv")  # ← PUT YOUR CSV HERE
+RAW_CSV  = os.path.join(DATA_DIR, "jan to may violations compressed.csv.gz")  # ← PUT YOUR CSV HERE
 
 SEVERITY_MAP = {
     "PARKING IN A MAIN ROAD": 5,
@@ -103,7 +103,7 @@ def run_pipeline():
         return None, None
 
     print("[ModelEngine] Loading raw violation data...")
-    df = pd.read_csv(RAW_CSV)
+    df = pd.read_csv(RAW_CSV,compression='gzip')
 
     from feedback import merge_feedback_into_training
     df = merge_feedback_into_training(df)
