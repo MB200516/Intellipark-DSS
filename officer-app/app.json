@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "IntelliPark Officer",
+    "slug": "intellipark-officer",
+    "scheme": "intellipark",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#111010"
+    },
+    "android": {
+      "package": "com.intellipark.officer",
+      "usesCleartextTraffic": true,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.intellipark.officer",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "IntelliPark needs your location to coordinate patrol assignments.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "IntelliPark tracks your location while on duty to show your position to dispatch."
+      }
+    }
+  }
+}
