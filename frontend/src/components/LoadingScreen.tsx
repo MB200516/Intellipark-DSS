@@ -2,13 +2,13 @@
 import { useEffect, useState, useRef } from 'react';
 
 const STATUS_LINES = [
-  'INITIALIZING_SYSTEM_CORE...',
-  'CALIBRATING_SENSORS...',
-  'RETRIEVING_HEATMAPS...',
-  'UPLINK_ESTABLISHED.',
-  'SYNCING_COMMAND_CENTER...',
-  'AUTHORIZING_ACCESS...',
-  'SYSTEM_READY.',
+  'LOADING...',
+  'LOADING...',
+  'LOADING...',
+  'LOADING...',
+  'LOADING...',
+  'LOADING...',
+  'LOADING...',
 ];
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
@@ -85,7 +85,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
 
         <div className="boot-fade-up" style={{ animationDelay: '0.8s' }}>
           <p className="boot-agency">Bengaluru Traffic Police</p>
-          <p className="boot-unit">Operational Intelligence Unit</p>
+          <p className="boot-unit">Descision Support System</p>
         </div>
       </main>
 
@@ -101,10 +101,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             <span className="boot-pulse-icon" style={{ animationDelay: '0.8s' }}>▤</span>
           </div>
           <p className="boot-encryption">Encryption Standard AES-256</p>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <p className="boot-footer-label">Geo-Coordinates</p>
-          <p className="boot-footer-value">12.9716° N, 77.5946° E</p>
         </div>
       </footer>
     </div>

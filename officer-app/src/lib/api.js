@@ -15,8 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //
 // ── LOCAL TESTING (same WiFi as your machine) ────────────────────
 export const API_BASE = 'http://192.168.31.56:8000';
-export const WS_BASE   = 'ws://192.168.31.56:8000';
-
+export const WS_BASE  = 'ws://192.168.31.56:8000';
 async function getToken() {
   return AsyncStorage.getItem('officer_token');
 }

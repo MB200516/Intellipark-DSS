@@ -15,6 +15,9 @@
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
         "ACCESS_COARSE_LOCATION"
       ]
     },
@@ -24,6 +27,17 @@
         "NSLocationWhenInUseUsageDescription": "IntelliPark needs your location to coordinate patrol assignments.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "IntelliPark tracks your location while on duty to show your position to dispatch."
       }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "269763b0-6ae4-433e-a00f-5d8e9f471db9"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/269763b0-6ae4-433e-a00f-5d8e9f471db9"
     }
   }
 }
