@@ -1,21 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// ── PRODUCTION / REMOTE EVALUATOR SETUP ──────────────────────────
-// When evaluators are on a different network than you (e.g. judging
-// remotely), your LAN IP (192.168.x.x) is NOT reachable by them.
-// Run `ngrok http 8000` on your machine, then paste the resulting
-// public URL here. Use https:// and wss:// (not http/ws) since
-// ngrok terminates TLS for you.
-//
-// Example after running ngrok:
-//   Forwarding  https://a1b2-203-0-113-45.ngrok-free.app -> localhost:8000
-//
-// export const API_BASE = 'https://a1b2-203-0-113-45.ngrok-free.app';
-// export const WS_BASE   = 'wss://a1b2-203-0-113-45.ngrok-free.app';
-//
-// ── LOCAL TESTING (same WiFi as your machine) ────────────────────
-export const API_BASE = 'http://192.168.31.56:8000';
-export const WS_BASE  = 'ws://192.168.31.56:8000';
+
+export const API_BASE = 'https://intellipark-api.azurewebsites.net';
+export const WS_BASE  = 'wss://intellipark-api.azurewebsites.net';
 async function getToken() {
   return AsyncStorage.getItem('officer_token');
 }

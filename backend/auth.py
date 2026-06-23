@@ -3,8 +3,9 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 import hashlib
+import os
 
-SECRET_KEY = "intellipark-bengaluru-traffic-police-2024"
+SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "dev-only-fallback-change-me")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 480
 

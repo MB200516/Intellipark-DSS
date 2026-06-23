@@ -6,6 +6,7 @@ import database as db
 from auth import USERS_DB, verify_pw, make_token
 from data_store import store
 
+import os
 import routers.dashboard as dashboard_router
 import routers.hotspots as hotspots_router
 import routers.violations as violations_router
@@ -15,8 +16,10 @@ import routers.websockets as websockets_router
 
 app = FastAPI(title="IntelliPark DSS API", version="2.0.0")
 
+origins = [os.environ.get("FRONTEND_URL", "http://localhost:3000")]
+
 app.add_middleware(CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 # supervisor login, not router-isolated since it touches USERS_DB directly
