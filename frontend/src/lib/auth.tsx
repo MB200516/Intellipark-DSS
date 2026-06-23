@@ -37,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     localStorage.setItem('intellipark_token', res.data.access_token);
     localStorage.setItem('intellipark_user', JSON.stringify(res.data.user));
+    localStorage.removeItem('intellipark_tour_completed'); // ← clears tour on every login
     setUser(res.data.user);
   };
 
