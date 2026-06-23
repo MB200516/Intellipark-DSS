@@ -1,7 +1,16 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
-import type { HotspotMarker } from '@/app/dashboard/heatmap/page';
+interface HotspotMarker {
+  id: number;
+  junction: string;
+  zone: string;
+  lat: number;
+  lng: number;
+  predicted_violations: number;
+  risk_score: number;
+  risk_level: string;
+}
 
 interface Props {
   hotspots: HotspotMarker[];
