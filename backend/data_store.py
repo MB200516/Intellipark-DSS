@@ -1,6 +1,34 @@
 import numpy as np
+import os
 from datetime import datetime, timedelta
 from model_engine import run_pipeline
+
+# ── Download CSV from Azure Blob Storage if not already present ──
+def _download_csv_if_needed():
+    from model_engine import RAW_CSV, DATA_DIR
+    if os.path.exists(RAW_CSV):
+        print("[DataStore] CSV already present, skipping download.")
+        return
+    conn_str = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+    if not conn_str:
+        print("[DataStore] No AZURE_STORAGE_CONNECTION_STRING set, skipping download.")
+        return
+    try:
+        from azure.storage.blob import BlobServiceClient
+        print("[DataStore] Downloading CSV from Azure Blob Storage...")
+        os.makedirs(DATA_DIR, exist_ok=True)
+        client = BlobServiceClient.from_connection_string(conn_str)
+        blob = client.get_blob_client(
+            container="data",
+            blob="jan to may violations compressed.csv.gz"
+        )
+        with open(RAW_CSV, "wb") as f:
+            f.write(blob.download_blob().readall())
+        print("[DataStore] CSV downloaded successfully.")
+    except Exception as e:
+        print(f"[DataStore] Failed to download CSV: {e}")
+
+_download_csv_if_needed()
 
 def _fallback_with_forecast():
     now = datetime.now()
@@ -34,7 +62,6 @@ PATROL_UNITS = [
 PATROL_UNITS_DEFAULT = {u["id"]: u for u in PATROL_UNITS}
 
 class Store:
-    """Holds current hotspot predictions and model metrics, reloadable on retrain."""
     def __init__(self):
         self.hotspots = []
         self.using_real_data = False
