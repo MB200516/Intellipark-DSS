@@ -7,12 +7,9 @@ import csv
 
 router = APIRouter(tags=["hotspots"])
 
-@router.get("/hotspots")
-async def hotspots(_=Depends(current_user)):
-    return store.sorted_by_risk()
+_heatmap_cache: str | None = None
 
-@router.get("/heatmap/render", response_class=HTMLResponse)
-async def heatmap_render(_=Depends(current_user)):
+def _build_heatmap() -> str:
     import folium
     from folium.plugins import HeatMap
 
@@ -42,12 +39,26 @@ async def heatmap_render(_=Depends(current_user)):
             popup=folium.Popup(popup, max_width=240), tooltip=h["junction"]).add_to(m)
 
     html = m._repr_html_()
-    return HTMLResponse(f'<!DOCTYPE html><html><head><meta charset="utf-8"/><style>html,body{{margin:0;padding:0;width:100%;height:100%;}}</style></head><body>{html}</body></html>')
+    return f'<!DOCTYPE html><html><head><meta charset="utf-8"/><style>html,body{{margin:0;padding:0;width:100%;height:100%;}}</style></head><body>{html}</body></html>'
+
+
+@router.get("/hotspots")
+async def hotspots(_=Depends(current_user)):
+    return store.sorted_by_risk()
+
+
+@router.get("/heatmap/render", response_class=HTMLResponse)
+async def heatmap_render(_=Depends(current_user)):
+    global _heatmap_cache
+    if _heatmap_cache is None:
+        _heatmap_cache = _build_heatmap()
+    return HTMLResponse(_heatmap_cache)
+
 
 @router.get("/hotspots-public")
 async def hotspots_public():
-    # unauthenticated feed, used by officer app's in-WebView heatmap
     return store.sorted_by_risk()
+
 
 @router.get("/reports/csv")
 async def export_csv(_=Depends(current_user)):
@@ -61,7 +72,10 @@ async def export_csv(_=Depends(current_user)):
     return StreamingResponse(iter([output.getvalue()]), media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=intellipark_report.csv"})
 
+
 @router.post("/model/retrain")
 async def retrain(_=Depends(current_user)):
+    global _heatmap_cache
+    _heatmap_cache = None  # clear cache so it rebuilds after retrain
     store.reload()
     return {"ok": True, "metrics": store.metrics, "hotspot_count": len(store.hotspots)}
