@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export const API_BASE = 'https://intellipark-api.azurewebsites.net';
-export const WS_BASE  = 'wss://intellipark-api.azurewebsites.net';
+export const API_BASE = 'https://intellipark-api-cbafhncxdpg5drf9.centralindia-01.azurewebsites.net';
+export const WS_BASE  = 'wss://intellipark-api-cbafhncxdpg5drf9.centralindia-01.azurewebsites.net';
 async function getToken() {
   return AsyncStorage.getItem('officer_token');
 }
