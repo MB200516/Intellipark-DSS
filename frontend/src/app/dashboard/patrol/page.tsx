@@ -137,12 +137,10 @@ export default function PatrolPage() {
               📱 Officer Mobile App
             </div>
             <div style={{ fontSize:'0.85rem', opacity:0.85, marginTop:'0.2rem' }}>
-              Download the app on your Android device to coordinate patrol assignments in the field.
-              Login with your badge number and password <strong>officer123</strong>.
+              Download the app on your Android device to coordinate patrol assignments.
             </div>
           </div>
-          
-            href="https://expo.dev/artifacts/eas/y8ZtghJGq3K27FeiJtlZfn2u4VQoMeXwDxYp1cInT5Q.apk"
+          <a href="https://expo.dev/artifacts/eas/y8ZtghJGq3K27FeiJtlZfn2u4VQoMeXwDxYp1cInT5Q.apk"
             target="_blank"
             rel="noopener noreferrer"
             style={{
