@@ -133,11 +133,11 @@ export default function PatrolPage() {
           flexWrap:'wrap', gap:'0.5rem',
         }}>
           <div>
-            <div style={{ fontWeight:700, fontSize:'0.95rem', letterSpacing:'0.05em', textTransform:'uppercase' }}>
-              📱 Officer Mobile App
+            <div style={{ fontWeight:700, fontSize:'1.4rem', letterSpacing:'0.05em', textTransform:'uppercase' }}>
+               Officer Mobile App
             </div>
-            <div style={{ fontSize:'0.85rem', opacity:0.85, marginTop:'0.2rem' }}>
-              Download the app on your Android device to coordinate patrol assignments.
+            <div style={{ fontSize:'1rem', opacity:0.85, marginTop:'0.2rem' }}>
+               Download the app on your Android device to coordinate patrol assignments. The link is provided enter the url in your phone's browser and download
             </div>
           </div>
           <a href="https://expo.dev/artifacts/eas/y8ZtghJGq3K27FeiJtlZfn2u4VQoMeXwDxYp1cInT5Q.apk"
