@@ -127,6 +127,35 @@ export default function PatrolPage() {
 
       <div style={{ padding:'2rem 2.2rem', display:'flex', flexDirection:'column', gap:'2rem' }}>
 
+        {/* Officer App Download Banner */}
+        <div style={{
+          padding:'1rem 1.5rem', background:'#1565C0', color:'#fff',
+          display:'flex', alignItems:'center', justifyContent:'space-between',
+          flexWrap:'wrap', gap:'0.5rem',
+        }}>
+          <div>
+            <div style={{ fontWeight:700, fontSize:'0.95rem', letterSpacing:'0.05em', textTransform:'uppercase' }}>
+              📱 Officer Mobile App
+            </div>
+            <div style={{ fontSize:'0.85rem', opacity:0.85, marginTop:'0.2rem' }}>
+              Download the app on your Android device to coordinate patrol assignments in the field.
+              Login with your badge number and password <strong>officer123</strong>.
+            </div>
+          </div>
+          
+            href="https://expo.dev/artifacts/eas/y8ZtghJGq3K27FeiJtlZfn2u4VQoMeXwDxYp1cInT5Q.apk"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding:'0.6rem 1.4rem', background:'#fff', color:'#1565C0',
+              fontWeight:700, fontSize:'0.82rem', letterSpacing:'0.06em',
+              textTransform:'uppercase', textDecoration:'none', whiteSpace:'nowrap',
+            }}
+          >
+            ⬇ Download APK
+          </a>
+        </div>
+
         {/* Officer roster */}
         <div className="section-card">
           <div className="section-header">
@@ -273,7 +302,7 @@ export default function PatrolPage() {
             </table>
           )}
         </div>
-        </div>
       </div>
+    </div>
   );
 }
