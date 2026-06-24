@@ -52,7 +52,6 @@ export default function PatrolPage() {
   useEffect(() => {
     loadAll().finally(() => setLoading(false));
 
-    const token = localStorage.getItem('intellipark_token') || '';
     const wsUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000')
       .replace('http://', 'ws://').replace('https://', 'wss://') + '/ws/dashboard';
     const ws = new WebSocket(wsUrl);
@@ -183,7 +182,6 @@ export default function PatrolPage() {
                 }}>
                   {STATUS_LABELS[o.status] || o.status}
                 </div>
-
                 {o.lat && o.lng ? (
                   <div style={{
                     marginTop:'0.65rem', padding:'0.5rem 0.6rem',
@@ -201,7 +199,6 @@ export default function PatrolPage() {
                     No GPS data yet
                   </div>
                 )}
-
                 {(o.status === 'dispatched' || o.status === 'on_patrol') && (
                   <button
                     onClick={() => handleRelease(o.id)}
@@ -230,9 +227,11 @@ export default function PatrolPage() {
             <div style={{ padding:'2.5rem', fontSize:'1rem', color:'#555' }}>Loading...</div>
           ) : (
             <table className="data-table">
-              <thead><tr>
-                <th>Junction</th><th>Zone</th><th>Risk Level</th><th>Action</th>
-              </tr></thead>
+              <thead>
+                <tr>
+                  <th>Junction</th><th>Zone</th><th>Risk Level</th><th>Action</th>
+                </tr>
+              </thead>
               <tbody>
                 {hotspots.slice(0, 10).map((h) => {
                   const isAssigned = assignedHotspotIds.has(h.id);
@@ -277,9 +276,11 @@ export default function PatrolPage() {
             <div style={{ padding:'2rem', fontSize:'0.95rem', color:'#888' }}>No assignments yet.</div>
           ) : (
             <table className="data-table">
-              <thead><tr>
-                <th>Junction</th><th>Officer</th><th>Distance</th><th>ETA</th><th>Status</th>
-              </tr></thead>
+              <thead>
+                <tr>
+                  <th>Junction</th><th>Officer</th><th>Distance</th><th>ETA</th><th>Status</th>
+                </tr>
+              </thead>
               <tbody>
                 {assignments.map((a) => (
                   <tr key={a.id}>
@@ -302,6 +303,7 @@ export default function PatrolPage() {
             </table>
           )}
         </div>
+
       </div>
     </div>
   );
